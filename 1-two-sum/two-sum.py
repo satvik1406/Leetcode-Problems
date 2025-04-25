@@ -1,14 +1,13 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        num_map = {}
-        for i in range(len(nums)):
-            num_map[nums[i]] = i
-        
-        for i in range(len(nums)):
-            if target - nums[i] in num_map:
-                if i != num_map[target - nums[i]]:
-                    return [i, num_map[target - nums[i]]]
-        
-        return []
+        sum_hash_table = {}
 
-                
+        for count in range(len(nums)):
+            if target - nums[count] in sum_hash_table:
+                return [sum_hash_table[target - nums[count]], count]
+            
+            sum_hash_table[nums[count]] = count
+
+        return [-1,-1]
+
+        
