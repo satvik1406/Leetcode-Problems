@@ -1,23 +1,20 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [1] * len(nums) 
-        for i in range(1, len(nums)):
-            res[i] = res[i-1] * nums[i-1]
+        n = len(nums)
+        product_factor = 1
+        res = nums.copy()
 
-        prodSoFar = 1
-        for i in range(len(nums)-1, -1, -1):
-            res[i] *= prodSoFar
-            prodSoFar *= nums[i]
+        for count in range(1,n):
+            res[count] = res[count] * res[count-1]
+
+        for count in range(n-1,0,-1):
+            res[count] = res[count-1] * product_factor
+            product_factor *= nums[count]
+
+        res[0] = product_factor
 
         return res
 
 
-
-    #nums 1 2 3 4
-    #res  1 1 2 6
-    #prod 1 
-
-
-
-
+            
         
